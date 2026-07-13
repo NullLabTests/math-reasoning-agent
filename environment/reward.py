@@ -3,8 +3,6 @@ import ast
 import math
 from typing import Optional
 
-import verifiers as vf
-
 
 def extract_boxed_answer(text: str) -> Optional[str]:
     """Extract the content inside the final \\boxed{} command."""
@@ -148,8 +146,12 @@ class MathReward:
         }
 
     @staticmethod
-    def create_rubric(parser: vf.Parser = None) -> vf.Rubric:
-        """Create a verifiers Rubric from this reward."""
+    def create_rubric(parser=None):
+        """Create a verifiers Rubric from this reward.
+        
+        Requires verifiers to be installed: pip install verifiers
+        """
+        import verifiers as vf
         if parser is None:
             parser = vf.Parser(extract_fn=extract_final_answer)
         rubric = vf.Rubric(parser=parser)
