@@ -2,9 +2,8 @@
 title: Math Reasoning Agent Demo
 emoji: 🧮
 colorFrom: indigo
-colorTo: violet
-sdk: docker
-app_file: app.py
+colorTo: purple
+sdk: static
 pinned: false
 license: mit
 ---
