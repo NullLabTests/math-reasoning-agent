@@ -1,8 +1,20 @@
+---
+title: Math Reasoning Agent Demo
+emoji: 🧮
+colorFrom: indigo
+colorTo: violet
+sdk: docker
+app_file: app.py
+pinned: false
+license: mit
+---
+
 # Mathematical Reasoning Agent — Fintech & Quant Demo
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![Powered by Prime Intellect](https://img.shields.io/badge/Powered%20by-Prime%20Intellect-6C5CE7)](https://github.com/PrimeIntellect-ai)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-HF%20Spaces-6C5CE7)](https://huggingface.co/spaces/BuilderBullet/math-reasoning-agent-demo)
 
 ---
 

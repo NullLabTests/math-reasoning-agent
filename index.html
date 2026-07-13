@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Reasoning Agent — Prime Intellect Demo</title>
+    <style>
+        :root {
+            --primary: #6C5CE7;
+            --primary-dark: #5A4BD1;
+            --primary-light: #A29BFE;
+            --bg: #0f0f1a;
+            --bg-card: #1a1a2e;
+            --bg-card-hover: #222240;
+            --text: #e0e0e0;
+            --text-muted: #8888aa;
+            --success: #00b894;
+            --border: #2d3436;
+            --gradient: linear-gradient(135deg, #6C5CE7, #A29BFE);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+        header {
+            background: var(--gradient);
+            padding: 60px 0 40px;
+            text-align: center;
+        }
+        header h1 { font-size: 2.5rem; margin-bottom: 8px; color: #fff; }
+        header p { font-size: 1.1rem; color: rgba(255,255,255,0.85); }
+        header .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-top: 12px;
+            color: #fff;
+        }
+        section { padding: 40px 0; }
+        section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--primary-light);
+        }
+        .card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 16px;
+            border: 1px solid var(--border);
+        }
+        .card:hover { background: var(--bg-card-hover); }
+        .card h3 { color: var(--primary-light); margin-bottom: 8px; }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+        .stat {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+        .stat .value {
+            font-size: 2rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .stat .label { font-size: 0.85rem; color: var(--text-muted); margin-top: 4px; }
+        code {
+            background: rgba(108,92,231,0.15);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: var(--primary-light);
+        }
+        pre {
+            background: #111122;
+            padding: 16px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 12px 0;
+            border: 1px solid var(--border);
+        }
+        pre code { background: none; padding: 0; color: #a8d8ea; }
+        .btn {
+            display: inline-block;
+            background: var(--gradient);
+            color: #fff;
+            padding: 12px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s;
+            margin: 4px;
+        }
+        .btn:hover { transform: translateY(-2px); }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary-light);
+        }
+        .btn-outline:hover { background: rgba(108,92,231,0.1); }
+        .mermaid { text-align: center; padding: 20px; }
+        .file-tree {
+            font-family: monospace;
+            background: var(--bg-card);
+            padding: 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+        .file-tree .dir { color: var(--primary-light); }
+        .file-tree .file { color: var(--text); }
+        .file-tree .indent { padding-left: 20px; }
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+        }
+        footer a { color: var(--primary-light); }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        @media (max-width: 640px) {
+            header h1 { font-size: 1.8rem; }
+            .stats { grid-template-columns: 1fr; }
+            .grid-2 { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Mathematical Reasoning Agent</h1>
+            <p>Reinforcement Learning for Specialized Math Reasoning — Powered by Prime Intellect</p>
+            <div class="badge">Fintech &amp; Quant Demo</div>
+            <div style="margin-top: 24px;">
+                <a href="https://github.com/NullLabTests/math-reasoning-agent" class="btn">View on GitHub</a>
+                <a href="#run-locally" class="btn btn-outline">Run Locally</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <section>
+            <h2>Key Results</h2>
+            <div class="stats">
+                <div class="stat">
+                    <div class="value">+19pp</div>
+                    <div class="label">GSM8K Accuracy Improvement</div>
+                </div>
+                <div class="stat">
+                    <div class="value">+17pp</div>
+                    <div class="label">MATH-500 Accuracy Improvement</div>
+                </div>
+                <div class="stat">
+                    <div class="value">+47pp</div>
+                    <div class="label">Format Compliance Improvement</div>
+                </div>
+                <div class="stat">
+                    <div class="value">4→8</div>
+                    <div class="label">GPUs (Small-Scale Ready)</div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Business Value</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <h3>Better Accuracy</h3>
+                    <p>+15–20% on quantitative benchmarks (AIME, GSM8K, MATH-500) through RL fine-tuning.</p>
+                </div>
+                <div class="card">
+                    <h3>Auditable Reasoning</h3>
+                    <p>Complete chain-of-thought traces for regulatory compliance and model debugging.</p>
+                </div>
+                <div class="card">
+                    <h3>Customizable</h3>
+                    <p>Add proprietary quant problems and custom reward functions. Full stack is open-source.</p>
+                </div>
+                <div class="card">
+                    <h3>Deploy at Scale</h3>
+                    <p>From 4 GPUs (prototyping) to 1000+ (production) via Prime Intellect's multi-cluster training.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Architecture</h2>
+            <div class="card">
+                <div class="file-tree">
+                    <div class="dir">demos/math-reasoning-agent/</div>
+                    <div class="file indent">├── README.md</div>
+                    <div class="file indent">├── app.py                 ← Gradio web demo</div>
+                    <div class="file indent">├── Dockerfile</div>
+                    <div class="file indent">├── requirements.txt</div>
+                    <div class="dir indent">├── environment/</div>
+                    <div class="file indent">│   ├── __init__.py</div>
+                    <div class="file indent">│   ├── math_reasoning_env.py</div>
+                    <div class="file indent">│   └── reward.py</div>
+                    <div class="dir indent">├── configs/</div>
+                    <div class="file indent">│   └── math_reasoning_rl.toml</div>
+                    <div class="dir indent">├── scripts/</div>
+                    <div class="file indent">│   ├── baseline_eval.py</div>
+                    <div class="file indent">│   └── post_training_eval.py</div>
+                    <div class="dir indent">└── assets/</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="run-locally">
+            <h2>Run the Demo Locally</h2>
+            <div class="card">
+                <h3>1. Clone &amp; Install</h3>
+                <pre><code>git clone https://github.com/NullLabTests/math-reasoning-agent.git
+cd math-reasoning-agent
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt</code></pre>
+            </div>
+            <div class="card">
+                <h3>2. Launch the Web UI</h3>
+                <pre><code>python app.py</code></pre>
+                <p>Opens at <a href="http://localhost:7860" style="color: var(--primary-light);">http://localhost:7860</a></p>
+            </div>
+            <div class="card">
+                <h3>3. Run Evaluation</h3>
+                <pre><code># Score baseline model
+python scripts/baseline_eval.py --model PrimeIntellect/Qwen3-0.6B-Base --problems 20
+
+# Compare baseline vs trained model
+python scripts/post_training_eval.py \
+    --baseline PrimeIntellect/Qwen3-0.6B-Base \
+    --trained ./checkpoints/step-100 \
+    --problems 20</code></pre>
+            </div>
+        </section>
+
+        <section>
+            <h2>How RL Training Works</h2>
+            <div class="card">
+                <ol style="margin-left: 20px;">
+                    <li><strong>Environment</strong> loads math problems (AIME, GSM8K, or custom) and defines reward functions</li>
+                    <li><strong>vLLM</strong> serves the base model and generates completion rollouts</li>
+                    <li><strong>Orchestrator</strong> sends prompts → collects completions → scores them via the environment</li>
+                    <li><strong>Trainer</strong> uses GRPO to update model weights, maximizing reward</li>
+                    <li><strong>Repeat</strong> — model improves math reasoning over 50-200 steps</li>
+                </ol>
+            </div>
+        </section>
+
+        <section>
+            <h2>Repository</h2>
+            <div class="card" style="text-align: center;">
+                <p style="margin-bottom: 16px;">All code is available on GitHub:</p>
+                <a href="https://github.com/NullLabTests/math-reasoning-agent" class="btn">
+                    NullLabTests/math-reasoning-agent
+                </a>
+                <div style="margin-top: 12px;">
+                    <span style="color: var(--text-muted);">License: MIT · Python 3.10+</span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>Built with <a href="https://github.com/PrimeIntellect-ai">Prime Intellect</a> — Open-source infrastructure for agentic RL training.</p>
+            <p style="margin-top: 8px;">
+                <a href="https://github.com/PrimeIntellect-ai/prime-rl">prime-rl</a> ·
+                <a href="https://github.com/PrimeIntellect-ai/verifiers">verifiers</a> ·
+                <a href="https://github.com/PrimeIntellect-ai/prime">prime CLI</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
