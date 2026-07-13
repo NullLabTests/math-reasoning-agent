@@ -117,11 +117,6 @@ demos/math-reasoning-agent/
 - CUDA-compatible GPU (recommended for real model inference)
 - 8GB+ RAM (16GB+ recommended)
 
-### Prerequisites: HF Pro for Spaces
-
-> **Note:** Hugging Face now requires a **Pro subscription** ($9/month) to run Gradio Spaces.
-> The free tier only supports static sites. If you don't have HF Pro, you can still run the demo locally (see below).
-
 ### 1. Clone & Install
 
 ```bash
@@ -199,27 +194,22 @@ python scripts/post_training_eval.py --baseline PrimeIntellect/Qwen3-0.6B-Base -
 
 ## Deploy to Hugging Face Spaces
 
-The demo is pre-configured for **Hugging Face Spaces** (requires HF Pro for Gradio):
+The demo is pre-configured for **Hugging Face Spaces**. A live version is available at:
 
-**Live space:** https://huggingface.co/spaces/BuilderBullet/math-reasoning-agent-demo
+**https://huggingface.co/spaces/BuilderBullet/math-reasoning-agent-demo**
+
+> **Note:** Gradio Spaces requires a **HF Pro subscription** ($9/mo) to run.
+> Without Pro, run the demo locally with `python app.py`.
 
 To deploy your own copy:
 
-1. Get a **HF Pro subscription** ($9/mo) at https://huggingface.co/pro
-2. Create a Space at https://huggingface.co/new-space
-   - Name: `math-reasoning-agent-demo`
-   - License: MIT
-   - Space SDK: Gradio
-   - Hardware: CPU (free CPU is NOT available — requires Pro)
+1. Get a **HF Pro subscription** at https://huggingface.co/pro
+2. Create a Space at https://huggingface.co/new-space (SDK: Gradio, Hardware: CPU)
 3. Push the code:
    ```bash
-   git remote add space https://huggingface.co/spaces/<your-username>/math-reasoning-agent-demo
+   git remote add space https://huggingface.co/spaces/<your-user>/math-reasoning-agent-demo
    git push space main
    ```
-4. The Space will auto-build and be available at:
-   `https://huggingface.co/spaces/<your-username>/math-reasoning-agent-demo`
-
-> **No HF Pro?** See "Quick Start" above to run the demo locally with `python app.py`.
 
 ---
 
