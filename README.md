@@ -1,3 +1,13 @@
+---
+title: Math Reasoning Agent Demo
+emoji: 🧮
+colorFrom: indigo
+colorTo: purple
+sdk: static
+pinned: false
+license: mit
+---
+
 # Mathematical Reasoning Agent — Fintech & Quant Demo
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
