@@ -3,7 +3,9 @@ title: Math Reasoning Agent Demo
 emoji: 🧮
 colorFrom: indigo
 colorTo: purple
-sdk: static
+sdk: gradio
+sdk_version: "5.0.0"
+app_file: app.py
 pinned: false
 license: mit
 ---
@@ -115,6 +117,11 @@ demos/math-reasoning-agent/
 - CUDA-compatible GPU (recommended for real model inference)
 - 8GB+ RAM (16GB+ recommended)
 
+### Prerequisites: HF Pro for Spaces
+
+> **Note:** Hugging Face now requires a **Pro subscription** ($9/month) to run Gradio Spaces.
+> The free tier only supports static sites. If you don't have HF Pro, you can still run the demo locally (see below).
+
 ### 1. Clone & Install
 
 ```bash
@@ -192,30 +199,27 @@ python scripts/post_training_eval.py --baseline PrimeIntellect/Qwen3-0.6B-Base -
 
 ## Deploy to Hugging Face Spaces
 
-This demo is designed to run on **Hugging Face Spaces** (free tier works):
+The demo is pre-configured for **Hugging Face Spaces** (requires HF Pro for Gradio):
 
-1. Create a Space at https://huggingface.co/new-space
+**Live space:** https://huggingface.co/spaces/BuilderBullet/math-reasoning-agent-demo
+
+To deploy your own copy:
+
+1. Get a **HF Pro subscription** ($9/mo) at https://huggingface.co/pro
+2. Create a Space at https://huggingface.co/new-space
    - Name: `math-reasoning-agent-demo`
    - License: MIT
    - Space SDK: Gradio
-   - Hardware: CPU or GPU (free CPU is fine for mock mode)
-
-2. Push the code:
+   - Hardware: CPU (free CPU is NOT available — requires Pro)
+3. Push the code:
    ```bash
-   git init
-   git add .
-   git commit -m "Initial commit: math reasoning agent demo"
    git remote add space https://huggingface.co/spaces/<your-username>/math-reasoning-agent-demo
    git push space main
    ```
-
-3. Add a `packages.txt` for system dependencies (optional):
-   ```
-   ffmpeg
-   ```
-
-4. Your Space will auto-build and be available at:
+4. The Space will auto-build and be available at:
    `https://huggingface.co/spaces/<your-username>/math-reasoning-agent-demo`
+
+> **No HF Pro?** See "Quick Start" above to run the demo locally with `python app.py`.
 
 ---
 
