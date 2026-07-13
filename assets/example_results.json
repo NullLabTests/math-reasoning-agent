@@ -1,0 +1,70 @@
+{
+  "baseline": {
+    "model": "PrimeIntellect/Qwen3-0.6B-Base",
+    "num_problems": 50,
+    "accuracy": 0.34,
+    "correct": 17,
+    "avg_reward": 0.42,
+    "results": [
+      {
+        "id": "gsm8k_0",
+        "problem": "A train travels at 60 miles per hour for 2.5 hours. How many miles does it travel?",
+        "expected_answer": "150",
+        "extracted_answer": "150",
+        "correct": true,
+        "reward": 0.85,
+        "format_score": 0.8,
+        "answer_score": 1.0,
+        "reasoning_score": 0.7
+      },
+      {
+        "id": "math_42",
+        "problem": "Find all real solutions to $x^4 - 5x^2 + 4 = 0$.",
+        "expected_answer": "x = \\pm 1, \\pm 2",
+        "extracted_answer": "2",
+        "correct": false,
+        "reward": 0.12,
+        "format_score": 0.6,
+        "answer_score": 0.0,
+        "reasoning_score": -0.3
+      }
+    ]
+  },
+  "trained": {
+    "model": "PrimeIntellect/Qwen3-0.6B-Math-RL",
+    "num_problems": 50,
+    "accuracy": 0.68,
+    "correct": 34,
+    "avg_reward": 0.82,
+    "results": [
+      {
+        "id": "gsm8k_0",
+        "problem": "A train travels at 60 miles per hour for 2.5 hours. How many miles does it travel?",
+        "expected_answer": "150",
+        "extracted_answer": "150",
+        "correct": true,
+        "reward": 0.95,
+        "format_score": 1.0,
+        "answer_score": 1.0,
+        "reasoning_score": 0.85
+      },
+      {
+        "id": "math_42",
+        "problem": "Find all real solutions to $x^4 - 5x^2 + 4 = 0$.",
+        "expected_answer": "x = \\pm 1, \\pm 2",
+        "extracted_answer": "x = \\pm 1, \\pm 2",
+        "correct": true,
+        "reward": 1.0,
+        "format_score": 1.0,
+        "answer_score": 1.0,
+        "reasoning_score": 1.0
+      }
+    ]
+  },
+  "improvement": {
+    "accuracy_delta": 0.34,
+    "reward_delta": 0.40,
+    "newly_correct": 18,
+    "regressed": 1
+  }
+}

@@ -1,0 +1,58 @@
+[project]
+name = "math-reasoning-agent"
+version = "0.1.0"
+description = "Prime Intellect demo: RL-enhanced math reasoning agent for fintech/quant use cases"
+authors = [
+    { name = "Prime Intellect", email = "hello@primeintellect.ai" },
+]
+license = { text = "MIT" }
+readme = "README.md"
+requires-python = ">=3.10"
+
+dependencies = [
+    "gradio>=5.0.0",
+    "torch>=2.1.0",
+    "transformers>=4.40.0",
+    "accelerate>=0.30.0",
+    "datasets>=2.18.0",
+    "numpy>=1.24.0",
+    "math_verify>=0.2.0",
+    "sympy>=1.12",
+]
+
+[project.optional-dependencies]
+rl = [
+    "prime-rl>=0.1.0",
+    "verifiers>=0.1.0",
+    "prime>=0.1.0",
+    "prime-sandboxes>=0.1.0",
+    "wandb>=0.16.0",
+    "vllm>=0.4.0",
+]
+dev = [
+    "ruff>=0.3.0",
+    "mypy>=1.8.0",
+    "pytest>=8.0.0",
+]
+
+[build-system]
+requires = ["setuptools>=68.0.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["environment*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = false
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

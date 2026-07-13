@@ -1,0 +1,32 @@
+# =============================================================================
+# Math Reasoning Agent — Demo Dependencies
+# =============================================================================
+# Core
+gradio>=5.0.0
+torch>=2.1.0
+transformers>=4.40.0
+accelerate>=0.30.0
+
+# Verifiers & Prime Intellect
+verifiers>=0.1.0
+prime-rl>=0.1.0
+prime>=0.1.0
+
+# Math verification
+math_verify>=0.2.0
+sympy>=1.12
+
+# Data & utilities
+datasets>=2.18.0
+numpy>=1.24.0
+python-dotenv>=1.0.0
+
+# Code execution sandbox (for Python tool env)
+prime-sandboxes>=0.1.0
+
+# UI extras
+markdown>=3.5.0
+
+# Development
+ruff>=0.3.0
+mypy>=1.8.0

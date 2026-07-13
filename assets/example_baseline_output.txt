@@ -1,0 +1,22 @@
+PROBLEM: Find all real solutions to x^4 - 5x^2 + 4 = 0.
+
+BASELINE MODEL RESPONSE:
+<reasoning>
+x^4 - 5x^2 + 4 = 0
+Answer: 2
+</reasoning>
+\boxed{2}
+
+EVALUATION:
+  Extracted Answer: 2
+  Expected Answer: x = ±1, ±2 (or [-1, 1, -2, 2])
+  Answer Correct: No (partial - found 1 of 4 solutions)
+  Format Score: 0.80 (has reasoning tags, has boxed answer)
+  Answer Score: 0.00
+  Reasoning Score: -0.30 (too brief, no step-by-step)
+
+ISSUES:
+  ❌ Incomplete reasoning - no substitution, factoring, or verification
+  ❌ Missing 3 of 4 solutions
+  ❌ No step-by-step breakdown
+  ❌ No verification step

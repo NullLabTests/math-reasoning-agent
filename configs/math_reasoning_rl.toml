@@ -1,0 +1,126 @@
+# =============================================================================
+# Math Reasoning RL Training Configuration
+# Prime Intellect - prime-rl Training Framework
+# =============================================================================
+#
+# This config is designed for small-scale training (4-8 GPUs).
+# See "Scaling Up" section in README for production cluster config.
+#
+# Usage:
+#   uv run rl @ configs/math_reasoning_rl.toml
+#
+# Prerequisites:
+#   pip install prime-rl verifiers
+#   (or: uv sync --group rl)
+
+# =============================================================================
+# GLOBAL SETTINGS
+# =============================================================================
+max_steps = 100                # Total RL training steps
+seq_len = 4096                 # Max sequence length (prompt + completion)
+
+# =============================================================================
+# MODEL
+# =============================================================================
+[model]
+name = "PrimeIntellect/Qwen3-0.6B-Base"   # Base model to train
+  # For production, use: "PrimeIntellect/Qwen3-32B-Base"
+  # Or any HuggingFace-compatible model
+seq_len = 4096
+compile = "None"               # Set to "inductor" for PyTorch 2.x speedup
+trust_remote_code = true
+attn_implementation = "flash_attention_2"  # Requires flash-attn installed
+
+# =============================================================================
+# WANDB LOGGING
+# =============================================================================
+[wandb]
+project = "math-reasoning-agent"
+name = "qwen3-0.6B-math-rl-v1"
+entity = "your-entity"          # Change to your W&B entity
+tags = ["math", "reasoning", "rl", "demo"]
+notes = "Small-scale math reasoning RL training for fintech demo"
+
+# =============================================================================
+# ORCHESTRATOR (rollout collection & environment interaction)
+# =============================================================================
+[orchestrator]
+batch_size = 64                 # Total batch size across all GPUs
+group_size = 8                  # Rollouts per prompt (for group-based advantage)
+strategy = "grpo"               # GRPO (Group Relative Policy Optimization)
+response_max_len = 2048         # Max tokens per completion
+
+[orchestrator.train.sampling]
+max_completion_tokens = 2048
+temperature = 0.7
+top_p = 0.95
+
+# =============================================================================
+# ENVIRONMENT CONFIGURATION
+# =============================================================================
+# Loads the math reasoning environment from the local package
+[[orchestrator.train.env]]
+id = "math-reasoning-agent"
+  # Environment-specific overrides
+  [orchestrator.train.env.config]
+  sources = ["competition_math", "gsm8k", "aime_2024"]
+  num_train_examples = 1000
+  use_python_tool = false       # Set to true for Python tool-use training
+
+# =============================================================================
+# TRAINER
+# =============================================================================
+[trainer]
+beta = 0.04                    # KL penalty coefficient
+epsilon = 0.2                  # PPO clipping epsilon
+gamma = 1.0                    # Discount factor
+gae_lambda = 0.95              # GAE lambda
+vf_coef = 0.5                  # Value function loss coefficient
+max_grad_norm = 1.0            # Gradient clipping
+num_epochs = 1                 # Number of training epochs per step
+
+[trainer.optim]
+lr = 3.0e-6                    # Learning rate (low for RL fine-tuning)
+weight_decay = 0.0
+warmup_steps = 10
+
+[trainer.scheduler]
+name = "cosine"
+min_lr_ratio = 0.1
+
+# =============================================================================
+# INFERENCE (vLLM)
+# =============================================================================
+[inference]
+dtype = "bfloat16"
+max_num_seqs = 128
+gpu_memory_utilization = 0.90
+tensor_parallel_size = 1       # Increase with model size
+pipeline_parallel_size = 1
+
+# =============================================================================
+# CHECKPOINTING
+# =============================================================================
+[ckpt]
+save_steps = 10                # Save checkpoint every N steps
+save_total_limit = 3           # Keep only the N most recent checkpoints
+  # Uncomment to push to HF Hub:
+  # [ckpt.hub]
+  # repo = "your-org/math-reasoning-agent-rl"
+  # token = "hf_xxx"
+
+# =============================================================================
+# SCALING NOTES (for larger setups)
+# =============================================================================
+# 4x H100 (80GB):
+#   - batch_size: 128, group_size: 16
+#   - Model: Qwen3-7B or Qwen3-14B
+#
+# 8x H100 (80GB):
+#   - batch_size: 256, group_size: 16
+#   - Model: Qwen3-32B or Qwen3-110B
+#
+# Production cluster (128+ GPUs via Prime Intellect):
+#   - Contact Prime Intellect for hosted training
+#   - Supports elastic scaling, multi-cluster, and automated checkpointing
+#   - Includes dedicated support for custom environment integration

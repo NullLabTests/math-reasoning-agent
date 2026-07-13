@@ -1,0 +1,40 @@
+PROBLEM: Find all real solutions to x^4 - 5x^2 + 4 = 0.
+
+RL-TRAINED MODEL RESPONSE:
+<reasoning>
+Step 1: Recognize this as a quadratic in x².
+Let u = x². Then the equation becomes u² - 5u + 4 = 0.
+
+Step 2: Factor the quadratic.
+u² - 5u + 4 = (u - 1)(u - 4) = 0
+So u = 1 or u = 4.
+
+Step 3: Substitute back x² = u.
+If x² = 1, then x = ±1.
+If x² = 4, then x = ±2.
+
+Step 4: Verify each solution.
+- x = 1: 1 - 5 + 4 = 0 ✓
+- x = -1: 1 - 5 + 4 = 0 ✓
+- x = 2: 16 - 20 + 4 = 0 ✓
+- x = -2: 16 - 20 + 4 = 0 ✓
+
+All four solutions satisfy the original equation. Therefore, the real solutions are x = -2, -1, 1, 2.
+</reasoning>
+\boxed{x = \pm 1, \pm 2}
+
+EVALUATION:
+  Extracted Answer: x = ±1, ±2
+  Expected Answer: x = ±1, ±2 (or [-1, 1, -2, 2])
+  Answer Correct: Yes
+  Format Score: 1.00 (perfect reasoning tags, boxed, numbered steps)
+  Answer Score: 1.00
+  Reasoning Score: 1.00 (step-by-step, mathematical notation, verification)
+
+IMPROVEMENTS OVER BASELINE:
+  ✓ Complete step-by-step reasoning (4 clear steps)
+  ✓ All 4 solutions found
+  ✓ Substitution method used (quadratic in x²)
+  ✓ Verification step for each solution
+  ✓ Proper formatting with numbered steps
+  ✓ Clear final answer with correct notation
