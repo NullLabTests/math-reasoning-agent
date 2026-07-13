@@ -5,10 +5,10 @@ with configurable system prompts and reward functions.
 """
 
 import json
+import logging
 import os
 from typing import Callable, Optional
 
-import verifiers as vf
 from datasets import load_dataset
 
 from .reward import MathReward, extract_final_answer
@@ -152,13 +152,16 @@ def load_environment(
     num_eval_examples: int = -1,
     use_python_tool: bool = False,
     env_name: str = "math-reasoning-agent",
-) -> vf.Environment:
+):
     """Load the math reasoning environment.
 
     This is the standard entrypoint expected by the verifiers ecosystem.
     Returns a verifiers Environment ready for use with prime-rl training.
+
+    Note: verifiers is imported lazily here since it has heavy dependencies
+    not needed for the demo UI. Install with: pip install verifiers
     """
-    import logging
+    import verifiers as vf
     logger = logging.getLogger(__name__)
 
     train_problems, eval_problems = build_dataset(
@@ -219,7 +222,7 @@ class MathReasoningEnv:
         self.problems = problems or SAMPLE_PROBLEMS
 
     def get_prompt(self, problem: dict) -> str:
-        return f"{self.system_prompt}\n\n## Problem\n\n{problem['problem']}\n\nSolve the problem step by step. Show your reasoning inside <reasoning> tags, and provide your final answer in \\boxed{}."
+        return f"{self.system_prompt}\n\n## Problem\n\n{problem['problem']}\n\nSolve the problem step by step. Show your reasoning inside <reasoning> tags, and provide your final answer in \\boxed{{}}."
 
     def evaluate_response(self, problem: dict, response: str) -> dict:
         reward = self.reward_fn(response, problem["answer"])
