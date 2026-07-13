@@ -24,7 +24,9 @@ python-dotenv>=1.0.0
 # Code execution sandbox (for Python tool env)
 prime-sandboxes>=0.1.0
 
-# UI extras
+# UI extras (pick one: Gradio for HF Spaces, Streamlit for Streamlit Cloud)
+gradio>=5.0.0
+streamlit>=1.35.0
 markdown>=3.5.0
 
 # Development
